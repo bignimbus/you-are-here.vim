@@ -43,10 +43,10 @@ function! s:GetPopupDimensions()
         \l:window_pos[0] + l:window_coords[0] - l:box_offset_y,
         \l:window_pos[1] + l:window_coords[1] - l:box_offset_x
         \]
-  return #{
-        \  coords: l:popup_coords,
-        \  maxwidth: l:width,
-        \  maxheight: l:height
+  return {
+        \  'coords': l:popup_coords,
+        \  'maxwidth': l:width,
+        \  'maxheight': l:height
         \}
 endfunction
 
@@ -66,16 +66,16 @@ function! s:OpenPopup(win_num)
   let l:popup_maxwidth = l:popup_dimensions.maxwidth
   call popup_create(
         \"[" . winnr() . "] " . l:content,
-        \#{
-        \  line: l:popup_coords[0],
-        \  col: l:popup_coords[1],
-        \  padding: g:youarehere_padding,
-        \  border: g:youarehere_border,
-        \  maxwidth: l:popup_maxwidth,
-        \  highlight: 'YouAreHere' . l:highlight_qualifier . 'Text',
-        \  borderhighlight: ['YouAreHere' . l:highlight_qualifier . 'Border'],
-        \  scrollbarhighlight: 'YouAreHere' . l:highlight_qualifier . 'Scrollbar',
-        \  thumbhighlight: 'YouAreHere' . l:highlight_qualifier . 'Thumb'
+        \{
+        \  'line': l:popup_coords[0],
+        \  'col': l:popup_coords[1],
+        \  'padding': g:youarehere_padding,
+        \  'border': g:youarehere_border,
+        \  'maxwidth': l:popup_maxwidth,
+        \  'highlight': 'YouAreHere' . l:highlight_qualifier . 'Text',
+        \  'borderhighlight': ['YouAreHere' . l:highlight_qualifier . 'Border'],
+        \  'scrollbarhighlight': 'YouAreHere' . l:highlight_qualifier . 'Scrollbar',
+        \  'thumbhighlight': 'YouAreHere' . l:highlight_qualifier . 'Thumb'
         \}
         \)
 endfunction
