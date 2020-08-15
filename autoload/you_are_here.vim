@@ -3,15 +3,15 @@ let g:youarehere_padding = [1, 1, 1, 1]
 let s:youarehere_is_open = 0
 let g:content = "%"
 
-hi! link YouAreHereText Pmenu
-hi! link YouAreHereBorder Pmenu
-hi! link YouAreHereScrollbar PmenuSbar
-hi! link YouAreHereThumb PmenuThumb
+highlight default link YouAreHereText Pmenu
+highlight default link YouAreHereBorder Pmenu
+highlight default link YouAreHereScrollbar PmenuSbar
+highlight default link YouAreHereThumb PmenuThumb
 
-hi! link YouAreHereActiveText YouAreHereText
-hi! link YouAreHereActiveBorder PmenuSel
-hi! link YouAreHereActiveScrollbar YouAreHereScrollbar
-hi! link YouAreHereActiveThumb YouAreHereThumb
+highlight default link YouAreHereActiveText YouAreHereText
+highlight default link YouAreHereActiveBorder PmenuSel
+highlight default link YouAreHereActiveScrollbar YouAreHereScrollbar
+highlight default link YouAreHereActiveThumb YouAreHereThumb
 
 function! s:WindowCoords(n)
   return [
