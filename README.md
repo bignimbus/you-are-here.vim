@@ -1,5 +1,7 @@
 # you-are-here.vim
-📌 Vim split filenames in easy-to-read popups
+📌 See the filenames of your vim splits in easy-to-read popups
+
+![you-are-here.vim screenshot](https://ghcdn.rawgit.org/bignimbus/you-are-here.vim/master/assets/you-are-here.png)
 
 ---
 
@@ -7,7 +9,7 @@ This is a small plugin to solve a small problem.
 The problem is that having more than a few splits
 open can be disorienting for onlookers in pair
 programming sessions, demos, or presentations.
-Every now and then, you may yourself find yourself
+Every now and then, you may even find yourself
 wanting a quick, readable, at-a-glance overview of
 the visible splits on the screen.
 
@@ -45,8 +47,8 @@ let g:youarehere_padding = [1, 1, 1, 1]
 " see :help expand for more options
 let g:content = "%"
 
-" Highlight groups are linked to Pmenu, PmenuSbar,
-" and PmenuThumb by default, but these can be set
+" Customize the look of you-are-here.vim by using
+" the following highlight groups.
 
 " inactive splits:
 "
@@ -55,7 +57,8 @@ let g:content = "%"
 " YouAreHereScrollbar
 " YouAreHereThumb
 
-" active split
+" active split:
+"
 " YouAreHereActiveText
 " YouAreHereActiveBorder
 " YouAreHereActiveScrollbar
