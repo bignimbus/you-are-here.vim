@@ -44,9 +44,7 @@ nnoremap <silent> <leader>here :call you_are_here#Toggle()<CR>
 
 " If you want to add a different (shorter?) map
 " to close the popups, that option is available
-nnoremap <silent> <ESC> :call you_are_here#Close()<CR>
-
-""
+nnoremap <silent> <leader>bye :call you_are_here#Close()<CR>
 
 " top, right, bottom, left border in popups
 let g:youarehere_border = [1, 1, 1, 1]
