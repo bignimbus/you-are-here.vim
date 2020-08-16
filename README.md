@@ -32,10 +32,15 @@ call plug#end()
 " Add a map of your choice.  I prefer to  use
 " <leader>here.  My leader key is set to the
 " backslash (\), so by typing \here in normal
-" mode, I activate you-are-here.vim. Pressing
-" <ESC> will close the popups.
+" mode, I activate you-are-here.vim. When I
+" am ready to close the popups, I use the same
+" mapping.
 
-nnoremap <silent> <leader>here :call you_are_here#YouAreHere()<CR>
+nnoremap <silent> <leader>here :call you_are_here#Toggle()<CR>
+
+" If you want to add a different (shorter?) map
+" to close the popups, that option is available
+nnoremap <silent> <ESC> :call you_are_here#Close()<CR>
 
 " top, right, bottom, left border in popups
 let g:youarehere_border = [1, 1, 1, 1]

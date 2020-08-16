@@ -50,9 +50,7 @@ function! s:GetPopupDimensions()
         \}
 endfunction
 
-imap <buffer> <silent> <expr> <F12> Double("\<F12>")
-
-function! ClosePopups()
+function! s:ClosePopups()
   call popup_clear()
   let s:youarehere_is_open = 0
 endfunction
@@ -80,14 +78,12 @@ function! s:OpenPopup(win_num)
         \)
 endfunction
 
-nnoremap <silent> <ESC> :call ClosePopups()<CR>
-
 " Windo / Windofast
 " credit: https://vim.fandom.com/wiki/Windo_and_restore_current_window
 
 " Just like windo, but restore the current window when done.
 function! WinDo(command)
-  let currwin=winnr()
+  let currwin = winnr()
   execute 'windo ' . a:command
   execute currwin . 'wincmd w'
 endfunction
@@ -96,12 +92,24 @@ com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
 " Just like Windo, but disable all autocommands for super fast processing.
 com! -nargs=+ -complete=command Windofast noautocmd call WinDo(<q-args>)
 
-function! you_are_here#YouAreHere()
+function! s:YouAreHere()
   if s:youarehere_is_open
-    call ClosePopups()
+    call <SID>ClosePopups()
     return
   endif
   let s:win_num = winnr()
   Windofast call <SID>OpenPopup(s:win_num)
   let s:youarehere_is_open = 1
+endfunction
+
+function! you_are_here#Close()
+  call <SID>ClosePopups()
+endfunction
+
+function! you_are_here#YouAreHere()
+  call <SID>YouAreHere()
+endfunction
+
+function! you_are_here#Toggle()
+  call <SID>YouAreHere()
 endfunction
