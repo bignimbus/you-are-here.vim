@@ -1,7 +1,8 @@
 let g:youarehere_border = [1, 1, 1, 1]
 let g:youarehere_padding = [1, 1, 1, 1]
-let s:youarehere_is_open = 0
 let g:content = "%"
+
+let s:youarehere_popups = []
 
 highlight default link YouAreHereText Pmenu
 highlight default link YouAreHereBorder Pmenu
@@ -12,6 +13,14 @@ highlight default link YouAreHereActiveText YouAreHereText
 highlight default link YouAreHereActiveBorder PmenuSel
 highlight default link YouAreHereActiveScrollbar YouAreHereScrollbar
 highlight default link YouAreHereActiveThumb YouAreHereThumb
+
+function! s:ResetPopups()
+  let s:youarehere_popups = []
+endfunction
+
+function! s:IsOpen()
+  return len(s:youarehere_popups) > 0
+endfunction
 
 function! s:WindowCoords(n)
   return [
@@ -51,8 +60,10 @@ function! s:GetPopupDimensions()
 endfunction
 
 function! s:ClosePopups()
-  call popup_clear()
-  let s:youarehere_is_open = 0
+  for p in s:youarehere_popups
+    call popup_close(p)
+  endfor
+  call <SID>ResetPopups()
 endfunction
 
 function! s:OpenPopup(win_num)
@@ -62,7 +73,7 @@ function! s:OpenPopup(win_num)
   let l:popup_dimensions = <SID>GetPopupDimensions()
   let l:popup_coords = l:popup_dimensions.coords
   let l:popup_maxwidth = l:popup_dimensions.maxwidth
-  call popup_create(
+  let l:popup = popup_create(
         \"[" . winnr() . "] " . l:content,
         \{
         \  'line': l:popup_coords[0],
@@ -76,6 +87,7 @@ function! s:OpenPopup(win_num)
         \  'thumbhighlight': 'YouAreHere' . l:highlight_qualifier . 'Thumb'
         \}
         \)
+  let s:youarehere_popups = add(s:youarehere_popups, l:popup)
 endfunction
 
 " Windo / Windofast
@@ -93,13 +105,12 @@ com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
 com! -nargs=+ -complete=command Windofast noautocmd call WinDo(<q-args>)
 
 function! s:YouAreHere()
-  if s:youarehere_is_open
+  if <SID>IsOpen()
     call <SID>ClosePopups()
     return
   endif
   let s:win_num = winnr()
   Windofast call <SID>OpenPopup(s:win_num)
-  let s:youarehere_is_open = 1
 endfunction
 
 function! you_are_here#Close()
