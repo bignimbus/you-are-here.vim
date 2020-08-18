@@ -1,6 +1,6 @@
 let g:youarehere_border = [1, 1, 1, 1]
 let g:youarehere_padding = [1, 1, 1, 1]
-let g:content = "%"
+let g:youarehere_content = "%"
 let g:youarehere_enable_switch_window_mappings = 1
 let g:youarehere_switch_window_mapping_prefix = "m"
 
@@ -33,7 +33,7 @@ function! s:WindowCoords(n)
 endfunction
 
 function! s:GetContent()
-  return expand(g:content)
+  return expand(g:youarehere_content)
 endfunction
 
 function! s:GetPopupParams(win_num)

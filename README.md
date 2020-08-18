@@ -73,7 +73,7 @@ aforementioned mappings, as will the optional mapping to
 |---|---|---|
 |`g:youarehere_switch_window_mapping_prefix`|`"m"`|While the popups are open, `you-are-here.vim` adds a keymapping to switch windows easily. `m1` focuses window `1`, `m2` focuses window `2`, and so on.  If you wish for a different prefix, such as `<leader>w`, pass it as a string literal `"<leader>w"`|
 |`g:youarehere_enable_switch_window_mappings`|`1`|Turn off the map described above by assigning `0` to this variable|
-|`g:content`|`"%"`|The argument passed to `expand()`.  Don't touch this without referring to `:help expand`|
+|`g:youarehere_content`|`"%"`|The argument passed to `expand()`.  Don't touch this without referring to `:help expand`|
 |`g:youarehere_padding`|`[1, 1, 1, 1]`|How many characters of padding on the top, right, bottom, and left of the popup windows|
 |`g:youarehere_border`|`[1, 1, 1, 1]`|How thick the border is at the top, right, bottom, and left of the popup windows|
 |`YouAreHereText`|`Pmenu`|Highlight group for inactive popup content|
