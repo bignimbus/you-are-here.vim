@@ -112,7 +112,16 @@ endfunction
 function! s:UpdatePopup(popup)
   let l:id = a:popup[0]
   let l:win_num = a:popup[1]
-  call popup_setoptions(l:id, <SID>GetPopupOptions(l:win_num))
+  let l:opts = <SID>GetPopupOptions(l:win_num)
+  call popup_setoptions(
+        \l:id,
+        \{
+        \  'highlight': l:opts.highlight,
+        \  'borderhighlight': l:opts.borderhighlight,
+        \  'scrollbarhighlight': l:opts.scrollbarhighlight,
+        \  'thumbhighlight': l:opts.thumbhighlight,
+        \}
+        \)
 endfunction
 
 " Windo / Windofast
