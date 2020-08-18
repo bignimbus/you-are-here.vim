@@ -1,6 +1,8 @@
 let g:youarehere_border = [1, 1, 1, 1]
 let g:youarehere_padding = [1, 1, 1, 1]
 let g:content = "%"
+let g:youarehere_enable_switch_window_mappings = 1
+let g:youarehere_switch_window_mapping_prefix = "m"
 
 let s:active_win_num = -1
 let s:youarehere_popups = []
@@ -74,6 +76,7 @@ endfunction
 function! s:ClosePopups()
   for p in s:youarehere_popups
     call popup_close(p[0])
+    execute "nunmap " . g:youarehere_switch_window_mapping_prefix . p[1]
   endfor
   call <SID>ResetPopups()
 endfunction
@@ -103,6 +106,7 @@ function! s:OpenPopup(win_num)
         \<SID>GetPopupOptions(a:win_num)
         \)
   let s:youarehere_popups = add(s:youarehere_popups, [l:popup, a:win_num])
+  execute "nmap <silent> " . g:youarehere_switch_window_mapping_prefix . a:win_num . " :call you_are_here#ChangeWindow(" . a:win_num . ")<CR>"
 endfunction
 
 function! s:UpdatePopup(popup)
@@ -155,4 +159,9 @@ endfunction
 
 function! you_are_here#Toggle()
   call <SID>YouAreHere()
+endfunction
+
+function! you_are_here#ChangeWindow(win_num)
+  execute a:win_num . "wincmd w"
+  call you_are_here#Update()
 endfunction
