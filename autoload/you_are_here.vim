@@ -1,8 +1,26 @@
-let g:youarehere_border = [1, 1, 1, 1]
-let g:youarehere_padding = [1, 1, 1, 1]
-let g:youarehere_content = "%"
-let g:youarehere_enable_switch_window_mappings = 1
-let g:youarehere_switch_window_mapping_prefix = "m"
+if !exists('g:youarehere_border')
+  let g:youarehere_border = [1, 1, 1, 1]
+endif
+
+if !exists('g:youarehere_padding')
+  let g:youarehere_padding = [1, 1, 1, 1]
+endif
+
+if !exists('g:youarehere_content')
+  let g:youarehere_content = "%"
+endif
+
+if !exists('g:youarehere_enable_switch_window_mappings')
+  let g:youarehere_enable_switch_window_mappings = 1
+endif
+
+if !exists('g:youarehere_enable_switch_window_mappings')
+  let g:youarehere_enable_switch_window_mappings = 1
+endif
+
+if !exists('g:youarehere_switch_window_mapping_prefix')
+  let g:youarehere_switch_window_mapping_prefix = "m"
+endif
 
 let s:active_win_num = -1
 let s:youarehere_popups = []
@@ -128,15 +146,11 @@ endfunction
 " credit: https://vim.fandom.com/wiki/Windo_and_restore_current_window
 
 " Just like windo, but restore the current window when done.
-function! WinDo(command)
+function! s:WinDo(command)
   let currwin = winnr()
   execute 'windo ' . a:command
   execute currwin . 'wincmd w'
 endfunction
-com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
-
-" Just like Windo, but disable all autocommands for super fast processing.
-com! -nargs=+ -complete=command Windofast noautocmd call WinDo(<q-args>)
 
 function! s:UpdatePopups()
   for p in s:youarehere_popups
@@ -150,7 +164,7 @@ function! s:YouAreHere()
     call <SID>ClosePopups()
     return
   endif
-  Windofast call <SID>OpenPopup(winnr())
+  noautocmd call s:WinDo("call <SID>OpenPopup(winnr())")
 endfunction
 
 function! you_are_here#Update()
