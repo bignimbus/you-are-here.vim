@@ -146,15 +146,11 @@ endfunction
 " credit: https://vim.fandom.com/wiki/Windo_and_restore_current_window
 
 " Just like windo, but restore the current window when done.
-function! WinDo(command)
+function! s:WinDo(command)
   let currwin = winnr()
   execute 'windo ' . a:command
   execute currwin . 'wincmd w'
 endfunction
-com! -nargs=+ -complete=command Windo call WinDo(<q-args>)
-
-" Just like Windo, but disable all autocommands for super fast processing.
-com! -nargs=+ -complete=command Windofast noautocmd call WinDo(<q-args>)
 
 function! s:UpdatePopups()
   for p in s:youarehere_popups
@@ -168,7 +164,7 @@ function! s:YouAreHere()
     call <SID>ClosePopups()
     return
   endif
-  Windofast call <SID>OpenPopup(winnr())
+  noautocmd call s:WinDo("call <SID>OpenPopup(winnr())")
 endfunction
 
 function! you_are_here#Update()
