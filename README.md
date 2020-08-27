@@ -41,6 +41,10 @@ call plug#end()
 
 nnoremap <silent> <leader>here :call you_are_here#Toggle()<CR>
 
+" If you want the popups to disappear automatically
+" after a while, you may also use ToggleFor(duration):
+nnoremap <silent> <leader>here :call you_are_here#ToggleFor(2500)<CR>
+
 " Optional: 
 
 " If you want to add a different (shorter?) map
