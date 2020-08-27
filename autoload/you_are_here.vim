@@ -97,6 +97,8 @@ function! s:ClosePopups()
     execute "nunmap " . g:youarehere_switch_window_mapping_prefix . p[1]
   endfor
   call <SID>ResetPopups()
+
+  call timer_stop(s:timeout)
 endfunction
 
 function! s:GetPopupOptions(win_num)
@@ -182,6 +184,15 @@ endfunction
 
 function! you_are_here#Toggle()
   call <SID>YouAreHere()
+endfunction
+
+function! you_are_here#ToggleFor(duration)
+  call you_are_here#Toggle()
+
+  let s:timeout = timer_start(
+    \ a:duration,
+    \ {-> you_are_here#Close()}
+    \ )
 endfunction
 
 function! you_are_here#ChangeWindow(win_num)
