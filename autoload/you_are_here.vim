@@ -187,12 +187,9 @@ function! you_are_here#Toggle()
 endfunction
 
 function! you_are_here#ToggleFor(duration)
-  call you_are_here#Toggle()
+  call <SID>YouAreHere()
 
-  let s:timeout = timer_start(
-    \ a:duration,
-    \ {-> you_are_here#Close()}
-    \ )
+  let s:timeout = timer_start(a:duration, {-> <SID>ClosePopups()})
 endfunction
 
 function! you_are_here#ChangeWindow(win_num)
