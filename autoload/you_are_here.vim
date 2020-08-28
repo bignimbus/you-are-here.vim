@@ -22,6 +22,7 @@ if !exists('g:youarehere_switch_window_mapping_prefix')
   let g:youarehere_switch_window_mapping_prefix = "m"
 endif
 
+let s:timeout = 0
 let s:active_win_num = -1
 let s:youarehere_popups = []
 
@@ -98,7 +99,9 @@ function! s:ClosePopups()
   endfor
   call <SID>ResetPopups()
 
-  call timer_stop(s:timeout)
+  if (s:timeout)
+    call timer_stop(s:timeout)
+  endif
 endfunction
 
 function! s:GetPopupOptions(win_num)
