@@ -1,3 +1,8 @@
+if v:version < 802
+  echoerr 'you-are-here plugin requires Vim 8.2 or higher. Aborting.'
+  finish
+endif
+
 if !exists('g:youarehere_border')
   let g:youarehere_border = [1, 1, 1, 1]
 endif
