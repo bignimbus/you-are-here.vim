@@ -1,3 +1,8 @@
+if exists('g:loaded_you_are_here')
+  finish
+endif
+let g:loaded_you_are_here = 1
+
 if v:version < 802
   echoerr 'you-are-here plugin requires Vim 8.2 or higher. Aborting.'
   finish
