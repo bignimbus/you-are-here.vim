@@ -1,3 +1,13 @@
+if exists('g:loaded_you_are_here')
+  finish
+endif
+let g:loaded_you_are_here = 1
+
+if v:version < 802
+  echoerr 'you-are-here plugin requires Vim 8.2 or higher. Aborting.'
+  finish
+endif
+
 if !exists('g:youarehere_border')
   let g:youarehere_border = [1, 1, 1, 1]
 endif
@@ -99,7 +109,7 @@ function! s:ClosePopups()
   endfor
   call <SID>ResetPopups()
 
-  if (s:timeout)
+  if has('timers') && (s:timeout)
     call timer_stop(s:timeout)
   endif
 endfunction
@@ -190,6 +200,11 @@ function! you_are_here#Toggle()
 endfunction
 
 function! you_are_here#ToggleFor(duration)
+  if !has('timers')
+    echoerr 'Calling you_are_here#ToggleFor() requires Vim built with +timers.'
+    return
+  endif
+
   call <SID>YouAreHere()
 
   let s:timeout = timer_start(a:duration, {-> <SID>ClosePopups()})
