@@ -1,7 +1,7 @@
 # you-are-here.vim
 📌 See the filenames of your vim splits in easy-to-read popups, switch windows seamlessly
 
-![you-are-here.vim screenshot](assets/you-are-here.png)
+![you-are-here.vim screenshot](https://github.com/bignimbus/pop-punk.vim/blob/master/assets/you-are-here.png)
 
 ---
 
